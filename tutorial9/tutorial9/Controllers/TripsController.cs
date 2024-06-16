@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using tutorial9.DTO_s;
 using tutorial9.Services;
 
 namespace tutorial9.Controllers;
@@ -21,17 +22,17 @@ public class TripsController : ControllerBase
         return Ok(result);
     }
 
-    [HttpDelete]
+    [HttpDelete("{id:int}")]
     public async Task<IActionResult> DeleteClient(int id)
     {
         var result = await _tripsService.DeleteClient(id);
         return Ok(result);
     }
 
-    [HttpPost]
-    public async Task<IActionResult> AssignClientToTrip(int tripId)
+    [HttpPost("{tripId:int}/clients")]
+    public async Task<IActionResult> AssignClientToTrip(int tripId, AddClientDto client)
     {
-        var result = await _tripsService.DeleteClient(tripId);
+        var result = await _tripsService.AssignClientToTrip(tripId, client);
         return Ok(result);
     }
 }

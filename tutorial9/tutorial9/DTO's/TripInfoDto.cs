@@ -1,6 +1,6 @@
 namespace tutorial9.DTO_s;
 
-public class TripInfoDto
+public class TripInfoDto //klasa odpowiedzialna za HttpGet ze stronicowanim
 {
     public int PageNum { get; set; }
     public int PageSize { get; set; }
