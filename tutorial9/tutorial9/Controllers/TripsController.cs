@@ -18,6 +18,20 @@ public class TripsController : ControllerBase
     public async Task<IActionResult> GetTrips(string? query, int? page, int? pageSize) // '?' - nullable
     {
         var result = await _tripsService.GetTrips(query, page, pageSize);
-        return StatusCode(StatusCodes.Status201Created);
+        return Ok(result);
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> DeleteClient(int id)
+    {
+        var result = await _tripsService.DeleteClient(id);
+        return Ok(result);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> AssignClientToTrip(int tripId)
+    {
+        var result = await _tripsService.DeleteClient(tripId);
+        return Ok(result);
     }
 }

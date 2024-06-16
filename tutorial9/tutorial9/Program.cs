@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using tutorial9.Context;
 using tutorial9.Services;
 
 public class Program
@@ -6,11 +8,10 @@ public class Program
     {
         var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
 
-        IConfiguration _configuration;
-
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         builder.Services.AddControllers();
+        builder.Services.AddDbContext<TripsContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
         builder.Services.AddScoped<ITripsService, TripsService>();
 
         var app = builder.Build();
